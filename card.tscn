@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch5p0ajdyw2lx"]
+
+[ext_resource type="Script" path="res://card.gd" id="1_oakml"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7ohex"]
+size = Vector2(64, 64)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kupx6"]
+size = Vector2(64, 64)
+
+[node name="Card" type="TextureButton"]
+texture_normal = SubResource("PlaceholderTexture2D_7ohex")
+script = ExtResource("1_oakml")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(32, 32)
+texture = SubResource("PlaceholderTexture2D_kupx6")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
