@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cakfd4i43tg8x"]
+[gd_scene load_steps=3 format=3 uid="uid://cakfd4i43tg8x"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_vu5va"]
+[ext_resource type="PackedScene" uid="uid://c87wy1ycyowes" path="res://Views/ShipViews/ship_view_interface.tscn" id="2_6coea"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -22,3 +23,8 @@ offset_top = -154.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
+
+[node name="ShipContext" parent="." instance=ExtResource("2_6coea")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1

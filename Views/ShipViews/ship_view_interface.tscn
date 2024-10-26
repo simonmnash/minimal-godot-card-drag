@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://c87wy1ycyowes"]
+
+[ext_resource type="Script" path="res://Views/ShipViews/ship_view_interface.gd" id="1_4a4y2"]
+
+[node name="ShipViewInterface" type="MarginContainer"]
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -154.0
+offset_top = -145.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_4a4y2")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ShipViewInterface" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ShipClass" type="Label" parent="PanelContainer/MarginContainer/ShipViewInterface"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Ship Class"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/ShipViewInterface"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.180392)
+show_behind_parent = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/ShipViewInterface"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/ShipViewInterface/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Speed"
+
+[node name="Speed" type="Label" parent="PanelContainer/MarginContainer/ShipViewInterface/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/ShipViewInterface"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/ShipViewInterface/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Fire Rate"
+
+[node name="FireRate" type="Label" parent="PanelContainer/MarginContainer/ShipViewInterface/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
