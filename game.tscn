@@ -12,6 +12,33 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vu5va")
 
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 550)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -260.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer/CenterContainer"]
+custom_minimum_size = Vector2(1024, 512)
+layout_mode = 2
+
+[node name="Battlefield" type="SubViewport" parent="PanelContainer/CenterContainer/SubViewportContainer"]
+unique_name_in_owner = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(1115, 525)
+render_target_update_mode = 4
+
 [node name="Hand" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -26,5 +53,6 @@ alignment = 1
 
 [node name="ShipContext" parent="." instance=ExtResource("2_6coea")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
+
+[connection signal="mouse_entered" from="PanelContainer/CenterContainer/SubViewportContainer" to="." method="_on_sub_viewport_container_mouse_entered"]

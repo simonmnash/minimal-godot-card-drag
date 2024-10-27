@@ -1,8 +1,11 @@
 extends Node
 
 signal focus_ship (s : ShipData)
-
+signal card_up(c : CardData)
+signal select_card(c : CardView)
 var all_cards : Array[CardData]
+
+var focused_ship
 
 func load_resource_folder(path='res://Data/Cards/') -> Array[CardData]:
 	var scene_loads : Array[CardData] = []
@@ -25,3 +28,7 @@ func load_resource_folder(path='res://Data/Cards/') -> Array[CardData]:
 
 func _ready():
 	all_cards = load_resource_folder()
+	self.connect("focus_ship", _on_ship_focused)
+
+func _on_ship_focused(s : ShipData):
+	self.focused_ship = s

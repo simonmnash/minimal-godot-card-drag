@@ -11,6 +11,7 @@ func _process(delta: float) -> void:
 	$Sprite2D.position = get_local_mouse_position()
 
 func _on_button_up() -> void:
+	GlobalData.emit_signal("card_up", card_data)
 	self.self_modulate.a = 1.0
 	$Sprite2D.hide()
 	%CardData.show()
@@ -19,14 +20,20 @@ func _on_button_down() -> void:
 	self.self_modulate.a = 0.0
 	$Sprite2D.show()
 	%CardData.hide()
+	GlobalData.emit_signal("select_card", self)
 
 func _on_focus_entered() -> void:
-	GlobalData.emit_signal("focus_ship", card_data.ship)
+	if not disabled:
+		GlobalData.emit_signal("focus_ship", card_data.ship)
 
 
 func _on_mouse_entered() -> void:
-	GlobalData.emit_signal("focus_ship", card_data.ship)
+	if not disabled:
+		GlobalData.emit_signal("focus_ship", card_data.ship)
 
 
 func _on_mouse_exited() -> void:
-	GlobalData.emit_signal("focus_ship", null)
+	if pressed:
+		pass
+	else:
+		GlobalData.emit_signal("focus_ship", null)
