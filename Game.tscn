@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://6q0j5g1b177q"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_vcrcr"]
+[ext_resource type="Script" path="res://Data/Team/team.gd" id="2_02mr2"]
+
+[sub_resource type="Resource" id="Resource_sjlhj"]
+script = ExtResource("2_02mr2")
+team_name = "Buffalo Bills"
+score = 0
+
+[sub_resource type="Resource" id="Resource_xhgkw"]
+script = ExtResource("2_02mr2")
+team_name = "Miami Dolphins"
+score = 0
+
+[node name="Game" type="Node"]
+script = ExtResource("1_vcrcr")
+home_team = SubResource("Resource_sjlhj")
+away_team = SubResource("Resource_xhgkw")

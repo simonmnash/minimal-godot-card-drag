@@ -10,14 +10,18 @@ config_version=5
 
 [application]
 
-config/name="card_game_example"
-run/main_scene="res://game.tscn"
+config/name="American Football"
+run/main_scene="res://Views/PlayerUI.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GlobalData="*res://GlobalData.tscn"
+
+[display]
+
+window/size/viewport_height=690
 
 [physics]
 

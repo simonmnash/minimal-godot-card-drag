@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsx48wevpjvmq"]
+[gd_scene load_steps=5 format=3 uid="uid://dsx48wevpjvmq"]
 
 [ext_resource type="Script" path="res://global_data.gd" id="1_s4ukx"]
+[ext_resource type="Script" path="res://Data/Team/team.gd" id="2_5ymi4"]
+
+[sub_resource type="Resource" id="Resource_wb2si"]
+script = ExtResource("2_5ymi4")
+team_name = "Buffalo Bills"
+score = 0
+
+[sub_resource type="Resource" id="Resource_72f18"]
+script = ExtResource("2_5ymi4")
+team_name = "Miami Dolphins"
+score = 0
 
 [node name="GlobalData" type="Node"]
 script = ExtResource("1_s4ukx")
+home_team = SubResource("Resource_wb2si")
+away_team = SubResource("Resource_72f18")
+
+[node name="DrawTimer" type="Timer" parent="."]

@@ -1,0 +1,118 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvc3gewj2u3sm"]
+
+[ext_resource type="Script" path="res://Views/game_data_view.gd" id="1_e5ama"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ssjok"]
+line_spacing = 1.0
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_tp5c1"]
+line_spacing = 1.0
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_j2qth"]
+line_spacing = 0.0
+font_size = 20
+
+[node name="GameDataView" type="MarginContainer"]
+custom_minimum_size = Vector2(0, 60)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 45.0
+grow_horizontal = 2
+script = ExtResource("1_e5ama")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="HomeContainer" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HomeContainer"]
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/HomeContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/HomeContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Home Team"
+label_settings = SubResource("LabelSettings_ssjok")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/HomeContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="HomeTeamName" type="Label" parent="HBoxContainer/HomeContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Home: "
+
+[node name="HomeTeamScore" type="Label" parent="HBoxContainer/HomeContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="ClockContainer" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ClockContainer"]
+layout_mode = 2
+
+[node name="ClockLabel" type="Label" parent="HBoxContainer/ClockContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Game Clock"
+label_settings = SubResource("LabelSettings_tp5c1")
+horizontal_alignment = 1
+
+[node name="ClockTime" type="Label" parent="HBoxContainer/ClockContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "60"
+label_settings = SubResource("LabelSettings_j2qth")
+horizontal_alignment = 1
+
+[node name="AwayContainer" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/AwayContainer"]
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/AwayContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/AwayContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Away Team"
+label_settings = SubResource("LabelSettings_ssjok")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/AwayContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="AwayTeamName" type="Label" parent="HBoxContainer/AwayContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Away: "
+
+[node name="AwayTeamScore" type="Label" parent="HBoxContainer/AwayContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"

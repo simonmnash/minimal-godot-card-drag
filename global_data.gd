@@ -1,11 +1,19 @@
 extends Node
 
+@export var home_team : Team
+@export var away_team : Team
+
+signal update_home_score(score: int)
+signal update_away_score(score: int)
+
+
 signal focus_ship (s : ShipData)
 signal card_up(c : CardData)
 signal select_card(c : CardView)
 var all_cards : Array[CardData]
 
 var focused_ship
+var local_player_team : Team
 
 func load_resource_folder(path='res://Data/Cards/') -> Array[CardData]:
 	var scene_loads : Array[CardData] = []
@@ -32,3 +40,11 @@ func _ready():
 
 func _on_ship_focused(s : ShipData):
 	self.focused_ship = s
+
+func home_score():
+	home_team.score += 1
+	emit_signal("update_home_score", home_team.score)
+	
+func away_score():
+	away_team.score += 1
+	emit_signal("update_away_score", away_team.score)

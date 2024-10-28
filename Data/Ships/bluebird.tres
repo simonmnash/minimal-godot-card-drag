@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_ggxgs")
-ship_class = "Bluebird Class Fighter"
+ship_class = "Linebacker"
 speed = 100.0
 time_between_shots = 5
 texture = ExtResource("2_vawvg")

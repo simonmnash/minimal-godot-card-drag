@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8nwhf5ieuxlx"]
+
+[ext_resource type="Script" path="res://Views/Battlefield/battlefield.gd" id="1_6v2ii"]
+[ext_resource type="PackedScene" uid="uid://00u4mt4lr8qc" path="res://Views/Battlefield/play_area.tscn" id="2_r1b2i"]
+
+[node name="Battlefield" type="SubViewport"]
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(1115, 525)
+render_target_update_mode = 4
+script = ExtResource("1_6v2ii")
+
+[node name="PlayArea" parent="." instance=ExtResource("2_r1b2i")]

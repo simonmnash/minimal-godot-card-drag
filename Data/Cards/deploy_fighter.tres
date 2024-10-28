@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_q2y8o")
 ship = ExtResource("2_jjou2")
-card_name = "Deploy Fighter"
+card_name = "Linebacker"
