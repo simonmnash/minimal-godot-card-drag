@@ -12,5 +12,25 @@ script = ExtResource("2_klikh")
 
 [node name="PlayerUI" parent="." instance=ExtResource("3_cb15b")]
 
+[node name="Singleplayer" type="MarginContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(500, 500)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Singleplayer"]
+layout_mode = 2
+text = "Start Single Player"
+
 [connection signal="player_connected" from="JamConnect" to="." method="_on_jam_connect_player_connected"]
 [connection signal="player_joined" from="JamConnect" to="." method="_on_jam_connect_player_joined"]
+[connection signal="pressed" from="Singleplayer/Button" to="." method="_on_button_pressed"]

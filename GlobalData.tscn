@@ -19,7 +19,6 @@ home_team = SubResource("Resource_wb2si")
 away_team = SubResource("Resource_72f18")
 
 [node name="DrawTimer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
+wait_time = 2.0
 
 [connection signal="timeout" from="DrawTimer" to="." method="_on_draw_timer_timeout"]

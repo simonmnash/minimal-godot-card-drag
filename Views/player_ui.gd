@@ -5,7 +5,10 @@ var player : Player
 var selected_card : CardView
 var card_scene : PackedScene = preload("res://Views/card.tscn")
 var ship_scene : PackedScene = preload("res://Views/Ship.tscn")
-@export var auto_play : bool = false
+@export var auto_play : bool = false :
+	set( v ):
+		auto_play = v
+		$AutoplayTimer.start()
 
 var ship_context_data : ShipData :
 	set(v):
@@ -26,34 +29,45 @@ func select_card(c: CardView):
 		if card != c:
 			card.disabled = true
 
-func card_up(c : CardData):
-	var p = get_global_mouse_position()
-	var s : ShipView = ship_scene.instantiate()
-	s.ship_date = ship_context_data
-	s.ship_team = player.team
-	s.position = %Battlefield.get_mouse_position()
-	rpc_id(1, "create_ship_at_position", s)
+func card_up(card_view : CardView):
+	var c = card_view.card_data
+	var battlefield_position = %Battlefield.get_mouse_position()
+	var card_index_in_hand = 0
+	for card in %Hand.get_children():
+		if card == card_view:
+			break
+		card_index_in_hand += 1
+	rpc_id(1, "create_ship_at_position", 
+		ship_context_data.ship_class,
+		battlefield_position.x,
+		battlefield_position.y,
+		card_index_in_hand)
 	for card: CardView in %Hand.get_children():
 		card.disabled = false
-	selected_card.queue_free()
 
 @rpc("any_peer", "call_remote")
-func create_ship_at_position():
-	pass
+func create_ship_at_position(ship_class: String, pos_x: float, pos_y: float, card_index_in_hand: int):
+	var player_sender = multiplayer.get_remote_sender_id()
+	var sending_player : Player = GlobalData.players[player_sender]
+	var s : ShipView = ship_scene.instantiate()
+	s.ship_date = GlobalData.all_ships[ship_class]
+	s.ship_team = sending_player.team
+	s.position = Vector2(pos_x, pos_y)
+	%Battlefield.add_child(s)
+	%Hand.get_child(card_index_in_hand).call_deferred("queue_free")
+
+func _ready() -> void:
+	GlobalData.connect("focus_ship", focus_ship)
+	GlobalData.connect("card_up", card_up)
+	GlobalData.connect("select_card", select_card)
+	GlobalData.connect("draw_card", draw_card)
 
 func begin_game() -> void:
 	for i in range(0, 3):
 		var c : CardView = card_scene.instantiate()
 		GlobalData.all_cards.shuffle()
-		c.card_data = GlobalData.all_cards[0]
+		c.card_data_index = randi_range(0, len(GlobalData.all_cards)-1)
 		%Hand.add_child(c)
-	GlobalData.connect("focus_ship", focus_ship)
-	GlobalData.connect("card_up", card_up)
-	GlobalData.connect("select_card", select_card)
-	GlobalData.connect("draw_card", draw_card)
-	var p = Player.new()
-	p.team = GlobalData.home_team
-	player = p
 	if auto_play:
 		$AutoplayTimer.start()
 
@@ -62,11 +76,9 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 
 func _on_area_2d_mouse_entered() -> void:
 	pass
-	#print(ship_context_data)
 
 func _on_sub_viewport_container_mouse_entered() -> void:
 	pass
-	#print(ship_context_data)
 
 func draw_card():
 	if %Hand.get_child_count() < 7:
@@ -75,20 +87,21 @@ func draw_card():
 		c.card_data = GlobalData.all_cards[0]
 		%Hand.add_child(c)
 
-
-
 func _on_autoplay_timer_timeout() -> void:
 	if %Hand.get_child_count() > 0:
-		var random_card_index = randi_range(0, %Hand.get_child_count()-1)
-		select_card(%Hand.get_children()[random_card_index])
-		var rand_x = randf_range(100.0, 1036.0)
-		var rand_y = randf_range(50.0, 481.0)
-		var s : ShipView = ship_scene.instantiate()
-		ship_context_data = selected_card.card_data.ship
-		s.ship_date = ship_context_data
-		s.ship_team = player.team
-		s.position = Vector2(rand_x, rand_y)
-		%Battlefield.add_child(s)
-		for card: CardView in %Hand.get_children():
-			card.disabled = false
-		selected_card.queue_free()
+		var sending_player : Player = GlobalData.players[0]
+		var card_index_in_hand = randi_range(0, %Hand.get_child_count()-1)
+		# Get the card at random index
+		var card_view : CardView = %Hand.get_child(card_index_in_hand)
+		# Get a random position on the battlefield
+		var battlefield_position = Vector2(
+			randf_range(0, %Battlefield.size.x),
+			randf_range(0, %Battlefield.size.y)
+		)
+		# Mimic the RPC call from card_up
+		create_ship_at_position(
+			card_view.card_data.ship.ship_class,
+			battlefield_position.x,
+			battlefield_position.y,
+			card_index_in_hand
+		)

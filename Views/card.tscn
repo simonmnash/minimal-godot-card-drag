@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch5p0ajdyw2lx"]
+[gd_scene load_steps=5 format=3 uid="uid://ch5p0ajdyw2lx"]
 
 [ext_resource type="Script" path="res://Views/card.gd" id="1_1x4t6"]
+[ext_resource type="Script" path="res://addons/jam_launch/core/JamSync.gd" id="2_a8a2q"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6grwy"]
 size = Vector2(128, 128)
@@ -38,6 +39,11 @@ mouse_filter = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "Card Name"
+
+[node name="JamSync" type="Node" parent="."]
+script = ExtResource("2_a8a2q")
+spawn_properties = Array[String](["position", "card_data_index"])
+sync_properties = Array[String](["position", "card_data_index"])
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]

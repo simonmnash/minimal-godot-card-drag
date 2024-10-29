@@ -79,7 +79,7 @@ horizontal_alignment = 1
 [node name="ClockTime" type="Label" parent="HBoxContainer/ClockContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "60"
+text = "TODO"
 label_settings = SubResource("LabelSettings_j2qth")
 horizontal_alignment = 1
 

@@ -8,11 +8,11 @@ signal update_away_score(score: int)
 
 signal draw_card
 signal focus_ship (s : ShipData)
-signal card_up(c : CardData)
+signal card_up(c : CardView)
 signal select_card(c : CardView)
 var all_cards : Array[CardData]
 var all_ships : Dictionary # Key: String (ship_class), Value: ShipData
-
+var players : Dictionary
 var focused_ship
 var local_player_team : Team
 
