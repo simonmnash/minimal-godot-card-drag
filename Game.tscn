@@ -1,19 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://6q0j5g1b177q"]
+[gd_scene load_steps=4 format=3 uid="uid://6q0j5g1b177q"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_vcrcr"]
-[ext_resource type="Script" path="res://Data/Team/team.gd" id="2_02mr2"]
-
-[sub_resource type="Resource" id="Resource_sjlhj"]
-script = ExtResource("2_02mr2")
-team_name = "Buffalo Bills"
-score = 0
-
-[sub_resource type="Resource" id="Resource_xhgkw"]
-script = ExtResource("2_02mr2")
-team_name = "Miami Dolphins"
-score = 0
+[ext_resource type="Script" path="res://addons/jam_launch/core/JamConnect.gd" id="2_klikh"]
+[ext_resource type="PackedScene" uid="uid://cakfd4i43tg8x" path="res://Views/PlayerUI.tscn" id="3_cb15b"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_vcrcr")
-home_team = SubResource("Resource_sjlhj")
-away_team = SubResource("Resource_xhgkw")
+
+[node name="JamConnect" type="Node" parent="."]
+script = ExtResource("2_klikh")
+
+[node name="PlayerUI" parent="." instance=ExtResource("3_cb15b")]
+
+[connection signal="player_connected" from="JamConnect" to="." method="_on_jam_connect_player_connected"]
+[connection signal="player_joined" from="JamConnect" to="." method="_on_jam_connect_player_joined"]

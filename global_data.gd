@@ -6,11 +6,12 @@ extends Node
 signal update_home_score(score: int)
 signal update_away_score(score: int)
 
-
+signal draw_card
 signal focus_ship (s : ShipData)
 signal card_up(c : CardData)
 signal select_card(c : CardView)
 var all_cards : Array[CardData]
+var all_ships : Dictionary # Key: String (ship_class), Value: ShipData
 
 var focused_ship
 var local_player_team : Team
@@ -36,6 +37,9 @@ func load_resource_folder(path='res://Data/Cards/') -> Array[CardData]:
 
 func _ready():
 	all_cards = load_resource_folder()
+	# Build ships dictionary from cards
+	for card in all_cards:
+		all_ships[card.ship.ship_class] = card.ship
 	self.connect("focus_ship", _on_ship_focused)
 
 func _on_ship_focused(s : ShipData):
@@ -48,3 +52,6 @@ func home_score():
 func away_score():
 	away_team.score += 1
 	emit_signal("update_away_score", away_team.score)
+
+func _on_draw_timer_timeout() -> void:
+	emit_signal("draw_card")

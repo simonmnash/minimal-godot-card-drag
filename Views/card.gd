@@ -26,11 +26,9 @@ func _on_focus_entered() -> void:
 	if not disabled:
 		GlobalData.emit_signal("focus_ship", card_data.ship)
 
-
 func _on_mouse_entered() -> void:
 	if not disabled:
 		GlobalData.emit_signal("focus_ship", card_data.ship)
-
 
 func _on_mouse_exited() -> void:
 	if pressed:

@@ -12,9 +12,11 @@ func _process(delta: float) -> void:
 
 
 func _on_away_end_zone_body_entered(body: Node2D) -> void:
-	GlobalData.home_score()
+	if multiplayer.is_server():
+		GlobalData.home_score()
 	body.queue_free()
 
 func _on_home_end_zone_body_entered(body: Node2D) -> void:
-	GlobalData.away_score()
+	if multiplayer.is_server():
+		GlobalData.away_score()
 	body.queue_free()

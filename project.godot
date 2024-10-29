@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="American Football"
-run/main_scene="res://Views/PlayerUI.tscn"
+run/main_scene="res://Game.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -22,6 +22,10 @@ GlobalData="*res://GlobalData.tscn"
 [display]
 
 window/size/viewport_height=690
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/jam_launch/editor_plugin/plugin.cfg")
 
 [physics]
 

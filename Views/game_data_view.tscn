@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvc3gewj2u3sm"]
 
-[ext_resource type="Script" path="res://Views/game_data_view.gd" id="1_e5ama"]
+[ext_resource type="Script" path="res://Views/game_data_view.gd" id="1_1khip"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ssjok"]
 line_spacing = 1.0
@@ -20,7 +20,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 45.0
 grow_horizontal = 2
-script = ExtResource("1_e5ama")
+script = ExtResource("1_1khip")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
