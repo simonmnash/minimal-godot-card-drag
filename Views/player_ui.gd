@@ -95,7 +95,7 @@ func _on_autoplay_timer_timeout() -> void:
 		var card_view : CardView = %Hand.get_child(card_index_in_hand)
 		# Get a random position on the battlefield
 		var battlefield_position = Vector2(
-			randf_range(0, %Battlefield.size.x),
+			randf_range(%Battlefield.size.x/2, %Battlefield.size.x),
 			randf_range(0, %Battlefield.size.y)
 		)
 		# Mimic the RPC call from card_up

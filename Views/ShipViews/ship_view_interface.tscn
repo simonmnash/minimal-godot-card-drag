@@ -64,7 +64,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/ShipViewInterface/HBoxContainer2"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Fire Rate"
+text = "Health"
 
 [node name="FireRate" type="Label" parent="PanelContainer/MarginContainer/ShipViewInterface/HBoxContainer2"]
 unique_name_in_owner = true

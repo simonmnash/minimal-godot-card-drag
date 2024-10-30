@@ -8,6 +8,7 @@
 size = Vector2(32, 32)
 
 [node name="Ship" type="RigidBody2D"]
+can_sleep = false
 script = ExtResource("1_10klg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -21,3 +22,5 @@ shape = SubResource("RectangleShape2D_oeo32")
 script = ExtResource("3_csfx6")
 spawn_properties = Array[String](["position"])
 sync_properties = Array[String](["position"])
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
