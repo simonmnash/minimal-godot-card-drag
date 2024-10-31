@@ -38,7 +38,7 @@ func card_up(card_view : CardView):
 			break
 		card_index_in_hand += 1
 	rpc_id(1, "create_ship_at_position", 
-		ship_context_data.ship_class,
+		card_view.card_data.ship.ship_class,
 		battlefield_position.x,
 		battlefield_position.y,
 		card_index_in_hand)
@@ -47,14 +47,22 @@ func card_up(card_view : CardView):
 
 @rpc("any_peer", "call_remote")
 func create_ship_at_position(ship_class: String, pos_x: float, pos_y: float, card_index_in_hand: int):
-	var player_sender = multiplayer.get_remote_sender_id()
-	var sending_player : Player = GlobalData.players[player_sender]
-	var s : ShipView = ship_scene.instantiate()
-	s.ship_date = GlobalData.all_ships[ship_class]
-	s.ship_team = sending_player.team
-	s.position = Vector2(pos_x, pos_y)
-	%Battlefield.add_child(s)
-	%Hand.get_child(card_index_in_hand).call_deferred("queue_free")
+	if multiplayer.is_server():
+		var player_sender = multiplayer.get_remote_sender_id()
+		var sending_player : Player = GlobalData.players[player_sender]
+		var s : ShipView = ship_scene.instantiate()
+		s.position = Vector2(pos_x, pos_y)
+		s.ship_team = sending_player.team
+		s.ship_class = ship_class
+		s.get_node("Sprite2D").texture = GlobalData.all_ships[ship_class].texture
+		s.texture_path = GlobalData.all_ships[ship_class].texture.resource_path
+		%Battlefield.add_child(s)
+		# TODO
+		# Right now nothing stops two players from grabbing and playing the same card at the same time.
+		# Add card costing and a lock on the card when one player grabs it.
+		# For now - just let them both play it and check if it is still in the server hand before queue free..
+		if %Hand.get_child(card_index_in_hand) != null:
+			%Hand.get_child(card_index_in_hand).call_deferred("queue_free")
 
 func _ready() -> void:
 	GlobalData.connect("focus_ship", focus_ship)
@@ -65,7 +73,7 @@ func _ready() -> void:
 func begin_game() -> void:
 	for i in range(0, 3):
 		var c : CardView = card_scene.instantiate()
-		GlobalData.all_cards.shuffle()
+		GlobalData.all_cards
 		c.card_data_index = randi_range(0, len(GlobalData.all_cards)-1)
 		%Hand.add_child(c)
 	if auto_play:
@@ -83,8 +91,7 @@ func _on_sub_viewport_container_mouse_entered() -> void:
 func draw_card():
 	if %Hand.get_child_count() < 7:
 		var c : CardView = card_scene.instantiate()
-		GlobalData.all_cards.shuffle()
-		c.card_data = GlobalData.all_cards[0]
+		c.card_data_index = randi_range(0, len(GlobalData.all_cards)-1)
 		%Hand.add_child(c)
 
 func _on_autoplay_timer_timeout() -> void:

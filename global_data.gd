@@ -40,6 +40,7 @@ func _ready():
 	# Build ships dictionary from cards
 	for card in all_cards:
 		all_ships[card.ship.ship_class] = card.ship
+		print(all_ships[card.ship.ship_class])
 	self.connect("focus_ship", _on_ship_focused)
 
 func _on_ship_focused(s : ShipData):

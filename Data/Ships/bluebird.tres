@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="ShipData" load_steps=3 format=3 uid="uid://dlnll8t6gvok7"]
 
 [ext_resource type="Script" path="res://Data/ship_data.gd" id="1_ggxgs"]
-[ext_resource type="Texture2D" uid="uid://cttkhudxa7vgc" path="res://icon.svg" id="2_vawvg"]
+[ext_resource type="Texture2D" uid="uid://cdeijsim8q7ou" path="res://assets/linebacker.png" id="2_yu4ev"]
 
 [resource]
 script = ExtResource("1_ggxgs")
 ship_class = "Linebacker"
 speed = 100.0
-time_between_shots = 5
-texture = ExtResource("2_vawvg")
+health = 2
+texture = ExtResource("2_yu4ev")

@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="ShipData" load_steps=3 format=3 uid="uid://d1tgj33jjqsbx"]
 
 [ext_resource type="Script" path="res://Data/ship_data.gd" id="1_1no4i"]
-[ext_resource type="Texture2D" uid="uid://cttkhudxa7vgc" path="res://icon.svg" id="2_mvnwi"]
+[ext_resource type="Texture2D" uid="uid://be2jl7fom65vd" path="res://assets/hail_mary.png" id="2_i6jp2"]
 
 [resource]
 script = ExtResource("1_1no4i")
 ship_class = "Hail Marry"
 speed = 1000.0
 health = 1
-texture = ExtResource("2_mvnwi")
+texture = ExtResource("2_i6jp2")

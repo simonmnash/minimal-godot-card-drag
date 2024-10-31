@@ -1,12 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://00u4mt4lr8qc"]
+[gd_scene load_steps=9 format=3 uid="uid://00u4mt4lr8qc"]
 
 [ext_resource type="Script" path="res://Views/Battlefield/play_area.gd" id="1_p271q"]
+
+[sub_resource type="Gradient" id="Gradient_hago3"]
+offsets = PackedFloat32Array(0.393862, 1)
+colors = PackedColorArray(0.270588, 0.156863, 0.235294, 1, 0.215686, 0.580392, 0.431373, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ggc3a"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dpi4a"]
+width = 30
+height = 2058
+color_ramp = SubResource("Gradient_hago3")
+noise = SubResource("FastNoiseLite_ggc3a")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5uvai"]
 size = Vector2(40, 2000)
 
+[sub_resource type="Gradient" id="Gradient_ai6os"]
+colors = PackedColorArray(0.6, 0.898039, 0.313726, 1, 0.215686, 0.580392, 0.431373, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q12hv"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tvcpj"]
+width = 30
+height = 2058
+color_ramp = SubResource("Gradient_ai6os")
+noise = SubResource("FastNoiseLite_q12hv")
+
 [node name="PlayArea" type="Node2D"]
 script = ExtResource("1_p271q")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(579, 11)
+scale = Vector2(37.6667, 1)
+texture = SubResource("NoiseTexture2D_dpi4a")
 
 [node name="HomeEndZone" type="Area2D" parent="."]
 position = Vector2(25, 0)
@@ -14,11 +42,17 @@ position = Vector2(25, 0)
 [node name="EndZone" type="CollisionShape2D" parent="HomeEndZone"]
 shape = SubResource("RectangleShape2D_5uvai")
 
+[node name="Sprite2D" type="Sprite2D" parent="HomeEndZone"]
+texture = SubResource("NoiseTexture2D_tvcpj")
+
 [node name="AwayEndZone" type="Area2D" parent="."]
 position = Vector2(1095, 0)
 
 [node name="EndZone" type="CollisionShape2D" parent="AwayEndZone"]
 shape = SubResource("RectangleShape2D_5uvai")
+
+[node name="Sprite2D2" type="Sprite2D" parent="AwayEndZone"]
+texture = SubResource("NoiseTexture2D_tvcpj")
 
 [connection signal="body_entered" from="HomeEndZone" to="." method="_on_home_end_zone_body_entered"]
 [connection signal="body_entered" from="AwayEndZone" to="." method="_on_away_end_zone_body_entered"]

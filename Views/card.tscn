@@ -1,22 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://ch5p0ajdyw2lx"]
+[gd_scene load_steps=4 format=3 uid="uid://ch5p0ajdyw2lx"]
 
 [ext_resource type="Script" path="res://Views/card.gd" id="1_1x4t6"]
+[ext_resource type="Texture2D" uid="uid://db08kmr28e4sb" path="res://Views/card.tres" id="1_lekr4"]
 [ext_resource type="Script" path="res://addons/jam_launch/core/JamSync.gd" id="2_a8a2q"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6grwy"]
-size = Vector2(128, 128)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kupx6"]
-size = Vector2(64, 64)
-
 [node name="Card" type="TextureButton"]
-texture_normal = SubResource("PlaceholderTexture2D_6grwy")
+texture_normal = ExtResource("1_lekr4")
 script = ExtResource("1_1x4t6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(32, 32)
-texture = SubResource("PlaceholderTexture2D_kupx6")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_lekr4")
 
 [node name="CardData" type="MarginContainer" parent="."]
 unique_name_in_owner = true

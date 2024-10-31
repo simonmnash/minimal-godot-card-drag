@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://4t2u2crjy1ja"]
+
+[node name="PlayerHand" type="HBoxContainer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -154.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
