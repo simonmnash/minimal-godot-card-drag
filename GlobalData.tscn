@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsx48wevpjvmq"]
+[gd_scene load_steps=8 format=3 uid="uid://dsx48wevpjvmq"]
 
 [ext_resource type="Script" path="res://global_data.gd" id="1_s4ukx"]
 [ext_resource type="Script" path="res://Data/Team/team.gd" id="2_5ymi4"]
+[ext_resource type="Script" path="res://Data/card_data.gd" id="3_x5i27"]
+[ext_resource type="Resource" uid="uid://d3gphydi2kyex" path="res://Data/Cards/deploy_fighter.tres" id="4_ah7ar"]
+[ext_resource type="Resource" uid="uid://cncdcef8cutuv" path="res://Data/Cards/missle.tres" id="5_3wj0i"]
 
 [sub_resource type="Resource" id="Resource_wb2si"]
 script = ExtResource("2_5ymi4")
@@ -17,6 +20,7 @@ score = 0
 script = ExtResource("1_s4ukx")
 home_team = SubResource("Resource_wb2si")
 away_team = SubResource("Resource_72f18")
+all_cards = Array[ExtResource("3_x5i27")]([ExtResource("4_ah7ar"), ExtResource("5_3wj0i")])
 
 [node name="DrawTimer" type="Timer" parent="."]
 wait_time = 2.0
