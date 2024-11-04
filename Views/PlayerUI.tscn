@@ -47,9 +47,10 @@ unique_name_in_owner = true
 [node name="Hand" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -73,7 +74,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="AutoplayTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 4.0
 
 [connection signal="mouse_entered" from="MarginContainer/PanelContainer/CenterContainer/SubViewportContainer" to="." method="_on_sub_viewport_container_mouse_entered"]
 [connection signal="timeout" from="AutoplayTimer" to="." method="_on_autoplay_timer_timeout"]

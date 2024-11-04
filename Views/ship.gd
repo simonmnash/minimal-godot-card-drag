@@ -2,6 +2,8 @@ extends RigidBody2D
 class_name ShipView
 
 var ship_date : ShipData  # Keep this for local reference
+var texture_one = preload("res://assets/hail_mary.png")
+var texture_two = preload("res://assets/linebacker.png")
 
 var ship_class : String :
 	set(v):
@@ -13,7 +15,10 @@ var ship_class : String :
 
 var texture_path : String :
 	set (v):
-		$Sprite2D.texture = load(v)
+		var tex = texture_two
+		if "hail_mary" in v:
+			tex = texture_one
+		$Sprite2D.texture = tex
 		texture_path = v
 
 @export var ship_team : Team
